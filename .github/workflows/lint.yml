@@ -1,0 +1,32 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1" # weekly dead-link check
+
+jobs:
+  awesome-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # "iPhone" can't be title case, so the awesome-heading rule always fails.
+      # Every other rule must pass.
+      - name: awesome-lint
+        run: |
+          npx --yes awesome-lint > lint.txt 2>&1 || true
+          cat lint.txt
+          if grep "✖" lint.txt | grep -v "awesome-heading" | grep -q .; then exit 1; fi
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-retries 3 --accept 200,206,403,429 --exclude 'divyaravitech' './**/*.md'
+          fail: true

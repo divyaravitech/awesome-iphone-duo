@@ -1,0 +1,23 @@
+name: Suggest a resource
+description: Suggest a library, article, video or tool for iPhone Duo developers
+labels: [resource]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      options: [Official Apple resources, Tools and libraries, Articles and tutorials, Design, Web, Prior art, News]
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it useful? (one line)
+    validations:
+      required: true

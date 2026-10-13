@@ -1,0 +1,16 @@
+name: API or gotcha correction
+description: Something changed in the SDK, or a gotcha is wrong
+labels: [correction]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source (Apple doc, video timestamp, forum post)
+    validations:
+      required: true

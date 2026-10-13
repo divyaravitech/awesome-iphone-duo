@@ -1,0 +1,4 @@
+- [ ] One resource or fix per PR
+- [ ] Format: `- [Title](link) - Description.`
+- [ ] Specific to iPhone Duo or foldables
+- [ ] Source linked (for API corrections)
