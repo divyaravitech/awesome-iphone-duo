@@ -20,7 +20,8 @@ jobs:
         run: |
           npx --yes awesome-lint > lint.txt 2>&1 || true
           cat lint.txt
-          if grep "✖" lint.txt | grep -v "awesome-heading" | grep -q .; then exit 1; fi
+          # Rule violations are the lines that name a remark-lint rule. Fail on any except awesome-heading.
+          if grep "remark-lint:" lint.txt | grep -v "remark-lint:awesome-heading" | grep -q .; then exit 1; fi
 
   links:
     runs-on: ubuntu-latest
